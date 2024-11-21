@@ -1,0 +1,20 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ rootNamespace }}Http\Controllers\BaseController;
+use Illuminate\Http\Request;
+
+class {{ class }} extends BaseController
+{
+    public function __invoke(Request $request)
+    {
+        try{
+
+            return $this->handleResponse();
+        }catch(\Exception){
+
+            return $this->handleError()
+        }
+    }
+}
