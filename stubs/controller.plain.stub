@@ -10,11 +10,11 @@ class {{ class }} extends BaseController
     public function __invoke(Request $request)
     {
         try{
-
+            
             return $this->handleResponse();
-        }catch(\Exception){
+        }catch(\Exception $e){
 
-            return $this->handleError()
+            return $this->handleError($e->getMessage());
         }
     }
 }
