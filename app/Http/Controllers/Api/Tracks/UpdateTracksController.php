@@ -14,11 +14,15 @@ class UpdateTracksController extends BaseController
         try {
             $input = $request->all();
 
-            Validator::make($input, [
+            $validator = Validator::make($input, [
                 'name' => 'required',
                 'album_id' => 'required|exists:albums,id',
                 'genre_id' => 'required|exists:genres,id',
-            ])->validate();
+            ]);
+
+            if ($validator->fails()) {
+                return $this->handleError(errors: $validator->errors());
+            }
 
             $track->name = $input['name'];
             $track->album_id = $input['album_id'];

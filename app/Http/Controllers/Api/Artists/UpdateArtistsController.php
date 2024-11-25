@@ -14,9 +14,13 @@ class UpdateArtistsController extends BaseController
         try {
             $input = $request->all();
 
-            Validator::make($input, [
+            $validator = Validator::make($input, [
                 'name' => 'required',
-            ])->validate();
+            ]);
+
+            if ($validator->fails()) {
+                return $this->handleError(errors: $validator->errors());
+            }
 
             $artist->name = $input['name'];
             $artist->save();

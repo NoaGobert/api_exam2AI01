@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 
 class RestoreAlbumsController extends BaseController
 {
-    public function __invoke(Request $request, Album $album)
+    public function __invoke(Request $request, $id)
     {
         try {
+            $album = Album::withTrashed()->findOrFail($id);
             $album->restore();
 
             return $this->handleResponse($album, 'Album restored successfully');

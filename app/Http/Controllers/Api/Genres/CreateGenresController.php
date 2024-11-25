@@ -14,9 +14,13 @@ class CreateGenresController extends BaseController
         try {
             $input = $request->all();
 
-            Validator::make($input, [
+            $validator = Validator::make($input, [
                 'name' => 'required|string|unique:genres,name',
-            ])->validate();
+            ]);
+
+            if ($validator->fails()) {
+                return $this->handleError(errors: $validator->errors());
+            }
 
             $genre = Genre::create($input);
 

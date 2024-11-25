@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 
 class RestoreTracksController extends BaseController
 {
-    public function __invoke(Request $request, Track $track)
+    public function __invoke(Request $request,  $id)
     {
         try {
+            $track = Track::withTrashed()->findOrFail($id);
             $track->restore();
 
             return $this->handleResponse($track, 'Track restored successfully');

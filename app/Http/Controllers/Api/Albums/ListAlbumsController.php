@@ -11,7 +11,7 @@ class ListAlbumsController extends BaseController
     public function __invoke(Request $request)
     {
         try {
-            $albums = Album::withTrashed()->with('artist')->get();
+            $albums = Album::withTrashed()->with('tracks', 'artist')->get();
             return $this->handleResponse($albums);
         } catch (\Exception $e) {
             return $this->handleError($e->getMessage());

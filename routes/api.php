@@ -34,7 +34,7 @@ Route::get('/artists/{artist}', GetArtistsController::class);
 Route::post('/artists', CreateArtistsController::class);
 Route::put('/artists/{artist}', UpdateArtistsController::class);
 Route::delete('/artists/{artist}', DeleteArtistsController::class);
-Route::get('/artists/{artist}/restore', RestoreArtistsController::class);
+Route::get('/artists/{id}/restore', RestoreArtistsController::class);
 
 // albums
 Route::get('/albums', ListAlbumsController::class);
@@ -42,7 +42,7 @@ Route::get('/albums/{album}', GetAlbumsController::class);
 Route::post('/albums', CreateAlbumsController::class);
 Route::put('/albums/{album}', UpdateAlbumsController::class);
 Route::delete('/albums/{album}', DeleteAlbumsController::class);
-Route::get('/albums/{album}/restore', RestoreAlbumsController::class);
+Route::get('/albums/{id}/restore', RestoreAlbumsController::class);
 
 // tracks
 Route::get('/tracks', ListTracksController::class);
@@ -50,7 +50,7 @@ Route::get('/tracks/{track}', GetTracksController::class);
 Route::post('/tracks', CreateTracksController::class);
 Route::put('/tracks/{track}', UpdateTracksController::class);
 Route::delete('/tracks/{track}', DeleteTracksController::class);
-Route::get('/tracks/{track}/restore', RestoreTracksController::class);
+Route::get('/tracks/{id}/restore', RestoreTracksController::class);
 
 
 
@@ -60,4 +60,4 @@ Route::get('/genres/{genre}', GetGenresController::class);
 Route::post('/genres', CreateGenresController::class);
 Route::put('/genres/{genre}', UpdateGenresController::class);
 Route::delete('/genres/{genre}', DeleteGenresController::class);
-Route::get('/genres/{genre}/restore', RestoreGenresController::class);
+Route::get('/genres/{id}/restore', RestoreGenresController::class);

@@ -14,10 +14,14 @@ class CreateAlbumsController extends BaseController
         try {
             $input = $request->all();
 
-            Validator::make($input, [
+            $validator = Validator::make($input, [
                 'title' => 'required',
                 'artist_id' => 'required',
-            ])->validate();
+            ]);
+
+            if ($validator->fails()) {
+                return $this->handleError(errors: $validator->errors());
+            }
 
             $album =  Album::create($input);
 

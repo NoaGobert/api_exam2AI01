@@ -14,12 +14,16 @@ class UpdateAlbumsController extends BaseController
         try {
             $input = $request->all();
 
-            Validator::make($input, [
-                'name' => 'required',
+            $validator = Validator::make($input, [
+                'title' => 'required',
                 'artist_id' => 'required|exists:artists,id',
-            ])->validate();
+            ]);
 
-            $album->name = $input['name'];
+            if ($validator->fails()) {
+                return $this->handleError(errors: $validator->errors());
+            }
+
+            $album->title = $input['title'];
             $album->artist_id = $input['artist_id'];
             $album->save();
 
