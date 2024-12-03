@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 
 class RestoreArtistsController extends BaseController
 {
-    public function __invoke(Request $request, Artist $artist)
+    public function __invoke(Request $request,  $id)
     {
         try {
+            $artist = Artist::withTrashed()->findOrFail($id);
             $artist->restore();
 
             return $this->handleResponse($artist, 'Artist restored successfully');
